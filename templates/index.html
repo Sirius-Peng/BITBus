@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>班车票务系统</title>
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap-icons.css') }}" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-dark bg-primary">
+    <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">
+                <i class="bi bi-bus-front"></i> 班车票务系统
+            </span>
+        <button class="btn btn-outline-light" data-bs-target="#configModal" data-bs-toggle="modal">
+            <i class="bi bi-gear"></i> 设置
+        </button>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <ul class="nav nav-tabs" id="mainTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" data-bs-target="#search" data-bs-toggle="tab" id="search-tab" type="button">
+                <i class="bi bi-search"></i> 车票查询
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-target="#tasks" data-bs-toggle="tab" id="tasks-tab" type="button">
+                <i class="bi bi-list-task"></i> 任务管理
+            </button>
+        </li>
+    </ul>
+
+    <div class="tab-content mt-3" id="mainTabContent">
+        <!-- 车票查询 -->
+        <div class="tab-pane fade show active" id="search" role="tabpanel">
+            <div class="card">
+                <div class="card-body">
+                    <div id="searchForm">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label">线路方向</label>
+                                <select class="form-select" id="routeDirection" required>
+                                    <option value="">请选择线路方向</option>
+                                    <option value="中关村校区->良乡校区">中关村校区 → 良乡校区</option>
+                                    <option value="良乡校区->中关村校区">良乡校区 → 中关村校区</option>
+                                    <option value="中关村校区->西山校区">中关村校区->西山校区</option>
+                                    <option value="西山校区->中关村校区">西山校区->中关村校区</option>
+                                    <option value="中关村校区->回龙观">中关村校区->回龙观</option>
+                                    <option value="回龙观->中关村校区">回龙观->中关村校区</option>
+                                    <option value="中关村校区->房山分校阎村">中关村校区->房山分校阎村</option>
+                                    <option value="房山分校阎村->中关村校区">房山分校阎村->中关村校区</option>
+                                    <option value="良乡校区->回龙观">良乡校区->回龙观</option>
+                                    <option value="回龙观->良乡校区">回龙观->良乡校区</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">日期</label>
+                                <input class="form-control" id="date" required type="date">
+                            </div>
+                            <div class="col-md-4 d-flex align-items-end">
+                                <button class="btn btn-primary w-100" onclick="searchBuses()" type="button">
+                                    <i class="bi bi-search"></i> 查询
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4" id="busResults"></div>
+        </div>
+
+        <!-- 任务管理 -->
+        <div class="tab-pane fade" id="tasks" role="tabpanel">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="mb-0">抢票任务列表</h5>
+                        <button class="btn btn-sm btn-primary" onclick="refreshTasks()">
+                            <i class="bi bi-arrow-clockwise"></i> 刷新
+                        </button>
+                    </div>
+                    <div id="taskList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 选座模态框 -->
+<div class="modal fade" id="seatModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="bi bi-grid-3x3"></i> 选择座位
+                </h5>
+                <button class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <div class="seat-info mb-3 p-3 bg-light rounded">
+                    <div class="row text-center">
+                        <div class="col-6">
+                            <h6 class="text-muted mb-1">已预订</h6>
+                            <span class="badge bg-danger fs-5">
+                                    <i class="bi bi-people-fill"></i>
+                                    <span id="reservedCount">0</span>
+                                </span>
+                        </div>
+                        <div class="col-6">
+                            <h6 class="text-muted mb-1">剩余</h6>
+                            <span class="badge bg-success fs-5">
+                                    <i class="bi bi-box-arrow-in-down"></i>
+                                    <span id="availableCount">0</span>
+                                </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" id="autoMode" type="checkbox">
+                        <label class="form-check-label" for="autoMode">
+                            <i class="bi bi-robot"></i> 自动抢票模式（按优先级轮询）
+                        </label>
+                    </div>
+                    <div class="mt-2" id="targetCountGroup" style="display:none;">
+                        <label class="form-label">
+                            <i class="bi bi-bullseye"></i> 目标座位数量
+                        </label>
+                        <input class="form-control" id="targetCount" max="10" min="1" oninput="if(this.value < 1) this.value = 1; if(this.value > 10) this.value = 10;" type="number"
+                               value="1">
+                        <small class="text-muted">建议不超过剩余座位数</small>
+                    </div>
+
+                    <!-- 批量设置优先级 -->
+                    <div class="mt-3">
+                        <small class="text-muted d-block mb-2">
+                            <i class="bi bi-info-circle"></i>
+                            右键点击座位可设置单个优先级，或使用下方按钮批量设置
+                        </small>
+                        <div class="btn-group btn-group-sm" role="group">
+                            <button class="btn btn-outline-danger" onclick="batchSetPriority(1)" type="button">
+                                <i class="bi bi-star-fill"></i> 全部高优先级
+                            </button>
+                            <button class="btn btn-outline-warning" onclick="batchSetPriority(2)" type="button">
+                                <i class="bi bi-star-half"></i> 全部中优先级
+                            </button>
+                            <button class="btn btn-outline-secondary" onclick="batchSetPriority(3)" type="button">
+                                <i class="bi bi-star"></i> 全部低优先级
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 座位地图容器 -->
+                <div class="seat-map-container">
+                    <div class="seat-map" id="seatMap"></div>
+                </div>
+
+                <div class="selected-seats mt-3 p-3 bg-light rounded">
+                    <strong>
+                        <i class="bi bi-check2-square"></i> 已选座位：
+                    </strong>
+                    <span class="text-primary fw-bold" id="selectedSeats">无</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">
+                    <i class="bi bi-x-circle"></i> 取消
+                </button>
+                <button class="btn btn-primary" onclick="confirmReservation()" type="button">
+                    <i class="bi bi-lightning-charge"></i> 确认抢票
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 配置模态框 -->
+<div class="modal fade" id="configModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">系统配置</h5>
+                <button class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-tabs mb-3" id="configTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" data-bs-target="#apiConfig" data-bs-toggle="tab">
+                            <i class="bi bi-plug"></i> API配置
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" data-bs-target="#notifyConfig" data-bs-toggle="tab">
+                            <i class="bi bi-bell"></i> 通知配置
+                        </button>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <!-- API配置 -->
+                    <div class="tab-pane fade show active" id="apiConfig">
+                        <!-- 自动抓包面板 -->
+                        <div class="alert alert-info" role="alert">
+                            <h6 class="alert-heading">
+                                <i class="bi bi-magic"></i> 自动获取凭证(推荐)
+                            </h6>
+                            <p class="mb-2">
+                                <i class="bi bi-shield-check text-success"></i>
+                                通过本地代理自动捕获，<strong>安全可靠</strong>，正确使用不会泄露隐私
+                            </p>
+                            <small class="text-muted d-block mb-2">
+                                💡 原理：在本机运行HTTP代理，从明文流量中提取API凭证，
+                                捕获完成后自动关闭代理。<a data-bs-target="#privacyInfo" data-bs-toggle="collapse"
+                                                          href="#">了解更多 →</a>
+                            </small>
+                            <div class="collapse mt-2" id="privacyInfo">
+                                <div class="card card-body bg-light">
+                                    <small>
+                                        <strong>隐私保护：</strong><br>
+                                        • 代理仅运行在本机，不连接外部服务器<br>
+                                        • 仅提取必要的 API 凭证（Token、Time、UserID）<br>
+                                        • 不记录、不存储、不上传任何其他数据<br>
+                                        • 捕获完成后立即关闭，不会持续监控<br>
+                                        • 所有代码开源，可自行审查
+                                    </small>
+                                </div>
+                            </div>
+                            <button class="btn btn-sm btn-primary mt-2" onclick="openProxyCapture()" type="button">
+                                <i class="bi bi-wifi"></i> 启动自动捕获
+                            </button>
+                        </div>
+
+                        <hr>
+
+                        <p class="text-muted small">
+                            <i class="bi bi-info-circle"></i> 或手动填写API凭证:
+                        </p>
+
+                        <form id="configForm" onsubmit="return false;">
+                            <div class="mb-3">
+                                <label class="form-label">API地址</label>
+                                <input class="form-control" id="apiHost" placeholder="hqapp1.bit.edu.cn" type="text">
+                                <small class="text-muted">默认：hqapp1.bit.edu.cn</small>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">API Token</label>
+                                <input class="form-control" id="apiToken" placeholder="32位字符" type="text">
+                                <small class="text-muted">必须为32位字符</small>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">API Time</label>
+                                <input class="form-control" id="apiTime" placeholder="13位时间戳" type="text">
+                                <small class="text-muted">必须为13位时间戳</small>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">用户ID</label>
+                                <input class="form-control" id="userId" placeholder="您的用户ID" type="text">
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- 通知配置 -->
+                    <div class="tab-pane fade" id="notifyConfig">
+                        <!-- 邮箱通知 -->
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" id="enableEmail" type="checkbox">
+                                    <label class="form-check-label" for="enableEmail">
+                                        <strong><i class="bi bi-envelope"></i> 启用邮箱通知</strong>
+                                    </label>
+                                </div>
+                                <div id="emailConfigFields">
+                                    <div class="row">
+                                        <div class="col-md-8 mb-2">
+                                            <input class="form-control form-control-sm" id="smtpServer" placeholder="SMTP服务器 (如: smtp.qq.com)"
+                                                   type="text">
+                                        </div>
+                                        <div class="col-md-4 mb-2">
+                                            <input class="form-control form-control-sm" id="smtpPort" placeholder="端口"
+                                                   type="number" value="465">
+                                        </div>
+                                    </div>
+                                    <input class="form-control form-control-sm mb-2" id="senderEmail" placeholder="发件邮箱"
+                                           type="email">
+                                    <input class="form-control form-control-sm mb-2" id="senderPassword" placeholder="邮箱授权码"
+                                           type="password">
+                                    <input class="form-control form-control-sm" id="receiverEmail" placeholder="收件邮箱"
+                                           type="email">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 企业微信通知 -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" id="enableWechat" type="checkbox">
+                                    <label class="form-check-label" for="enableWechat">
+                                        <strong><i class="bi bi-wechat"></i> 启用企业微信通知</strong>
+                                    </label>
+                                </div>
+                                <div id="wechatConfigFields">
+                                    <input class="form-control form-control-sm" id="wechatWebhook" placeholder="企业微信 Webhook URL"
+                                           type="text">
+                                    <small class="text-muted">群机器人 Webhook 地址</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">
+                    <i class="bi bi-x-circle"></i> 取消
+                </button>
+                <button class="btn btn-primary" onclick="saveConfig()" type="button">
+                    <i class="bi bi-plug-fill"></i> 保存配置
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 代理捕获模态框 -->
+<div class="modal fade" id="proxyCaptureModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">
+                    <i class="bi bi-wifi"></i> 自动捕获API凭证
+                </h5>
+                <button class="btn-close btn-close-white" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <!-- 状态显示 -->
+                <div class="alert alert-secondary" id="proxyStatus">
+                    <div class="d-flex align-items-center">
+                        <div class="spinner-border spinner-border-sm me-2" role="status">
+                            <span class="visually-hidden">准备中...</span>
+                        </div>
+                        <span>正在启动代理服务器...</span>
+                    </div>
+                </div>
+
+                <!-- 配置说明 -->
+                <div id="proxyInstructions" style="display:none;">
+                    <div class="card mb-3">
+                        <div class="card-header bg-light">
+                            <strong><i class="bi bi-1-circle-fill text-primary"></i> 手机代理配置</strong>
+                        </div>
+                        <div class="card-body">
+                            <ol class="mb-0">
+                                <li>打开手机WiFi设置</li>
+                                <li>选择已连接的WiFi → 配置代理</li>
+                                <li>选择"手动"代理,填写:
+                                    <div class="mt-2 p-3 bg-light rounded">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <strong>服务器:</strong>
+                                                <code id="proxyServerIP">-</code>
+                                            </div>
+                                            <div class="col-6">
+                                                <strong>端口:</strong>
+                                                <code id="proxyServerPort">8888</code>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="mt-2">保存配置</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="card mb-3">
+                        <div class="card-header bg-light">
+                            <strong><i class="bi bi-2-circle-fill text-primary"></i> 访问班车系统</strong>
+                        </div>
+                        <div class="card-body">
+                            <ol class="mb-0">
+                                <li>在手机i北理工作台打开“班车服务”</li>
+                                <li>系统将自动捕获凭证</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- 捕获进度 -->
+                    <div class="card">
+                        <div class="card-header bg-light">
+                            <strong><i class="bi bi-3-circle-fill text-primary"></i> 捕获进度</strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="list-group list-group-flush">
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>API Token</span>
+                                    <span id="tokenStatus">
+                                        <i class="bi bi-hourglass text-muted"></i> 等待中
+                                    </span>
+                                </div>
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>API Time</span>
+                                    <span id="timeStatus">
+                                        <i class="bi bi-hourglass text-muted"></i> 等待中
+                                    </span>
+                                </div>
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>User ID</span>
+                                    <span id="useridStatus">
+                                        <i class="bi bi-hourglass text-muted"></i> 等待中
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="stopProxyCapture()" type="button">
+                    <i class="bi bi-x-circle"></i> 停止并关闭
+                </button>
+                <button class="btn btn-success" id="applyCredentialsBtn" onclick="applyProxyCredentials()" style="display:none;"
+                        type="button">
+                    <i class="bi bi-check-circle"></i> 应用凭证
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

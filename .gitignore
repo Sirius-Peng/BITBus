@@ -1,0 +1,31 @@
+# ---> Custom
+.env
+config.json
+seat_priorities.json
+
+# ---> Python
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+*.egg-info/
+dist/
+build/
+
+# ---> IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ---> 日志文件
+*.log
+
+# ---> 操作系统
+.DS_Store
+Thumbs.db
