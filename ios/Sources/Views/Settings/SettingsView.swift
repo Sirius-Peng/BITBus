@@ -3,8 +3,16 @@ import SwiftUI
 struct SettingsView: View {
     @Environment(AppModel.self) private var appModel
 
+    @FocusState private var focusedField: Field?
     @State private var saveMessage: String?
     @State private var saveError: String?
+
+    private enum Field: Hashable {
+        case host
+        case token
+        case time
+        case userID
+    }
 
     var body: some View {
         @Bindable var appModel = appModel
@@ -15,16 +23,28 @@ struct SettingsView: View {
                     TextField("API Host", text: $appModel.settings.host)
                         .textInputAutocapitalization(.never)
                         .autocorrectionDisabled()
+                        .focused($focusedField, equals: .host)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            focusedField = .token
+                        }
 
                     TextField("API Token", text: $appModel.settings.token)
                         .textInputAutocapitalization(.never)
                         .autocorrectionDisabled()
+                        .focused($focusedField, equals: .token)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            focusedField = .time
+                        }
 
                     TextField("API Time", text: $appModel.settings.time)
                         .keyboardType(.numberPad)
+                        .focused($focusedField, equals: .time)
 
                     TextField("User ID", text: $appModel.settings.userID)
                         .keyboardType(.numberPad)
+                        .focused($focusedField, equals: .userID)
                 }
 
                 Section("说明") {
@@ -46,7 +66,21 @@ struct SettingsView: View {
                         .frame(maxWidth: .infinity, alignment: .center)
                 }
             }
+            .scrollDismissesKeyboard(.immediately)
+            .simultaneousGesture(
+                TapGesture().onEnded {
+                    focusedField = nil
+                }
+            )
             .navigationTitle("设置")
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button("完成") {
+                        focusedField = nil
+                    }
+                }
+            }
             .alert("保存成功", isPresented: Binding(
                 get: { saveMessage != nil },
                 set: { if !$0 { saveMessage = nil } }
