@@ -1,0 +1,526 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0B46D92C3ABDCA8356F5E950 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB22E3C377D12B007321E13 /* RootView.swift */; };
+		5AB79DC07F7AD396802E1A7B /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046C3BCFD8737326E5A02425 /* TasksView.swift */; };
+		6E6BE9A35184A7294F81E6A7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D605F785EE8E4AF8E165642 /* SettingsView.swift */; };
+		74056915D06C07EC78560B03 /* BITBusGrabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF81E6E3527198A264F9EF /* BITBusGrabTests.swift */; };
+		7887378D84A2C24B4E83F615 /* LocalNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306893615ACEEEA7AE923A07 /* LocalNotificationService.swift */; };
+		869E0B39D7DF746EAC83912D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CE72D632CD828C8EFC6B796 /* Assets.xcassets */; };
+		9AE4B9D8E9AEBFDCDCCBBD00 /* BusModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1987D797ED45FA0E8030D5EF /* BusModels.swift */; };
+		A7970668F072784205E64874 /* BITBusAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999F2C9F0F78273F027614FB /* BITBusAPI.swift */; };
+		B05D36CB6915A33A5D47446C /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10799FD1B112D6AD25FAE45D /* SearchView.swift */; };
+		B644C36DAC720FE3D81CAEB7 /* ReservationTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0D2A5A159A6C17C375AEEC /* ReservationTaskManager.swift */; };
+		B85D23BCEFCAF73F60C49D04 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE6FEE7C85D2178865C661 /* AppModel.swift */; };
+		BD7C9D18FA487148A9B883F5 /* BITBusGrabApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC51679934910D48520419D9 /* BITBusGrabApp.swift */; };
+		BF5C7CDC5FE6606B575EC4EB /* AppPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0287FC1A9B47016E9972EC /* AppPersistence.swift */; };
+		E55C0D90A62AC93DB94A9B1F /* SeatSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D376A428F08D9855F084A0C1 /* SeatSelectionView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E628AFA41268899C47DF7773 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F4BF6A59EB8A026A27F8EA7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B8F58A9D01E43070DEBA2D5;
+			remoteInfo = BITBusGrab;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		046C3BCFD8737326E5A02425 /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
+		10799FD1B112D6AD25FAE45D /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		1987D797ED45FA0E8030D5EF /* BusModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusModels.swift; sourceTree = "<group>"; };
+		306893615ACEEEA7AE923A07 /* LocalNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationService.swift; sourceTree = "<group>"; };
+		4D605F785EE8E4AF8E165642 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		6974A601AC7425B11F13BC8B /* BITBusGrabTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = BITBusGrabTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7CE72D632CD828C8EFC6B796 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8C0287FC1A9B47016E9972EC /* AppPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPersistence.swift; sourceTree = "<group>"; };
+		8E80A24AC58865828247597A /* BITBusGrab.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = BITBusGrab.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		999F2C9F0F78273F027614FB /* BITBusAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BITBusAPI.swift; sourceTree = "<group>"; };
+		A3CF81E6E3527198A264F9EF /* BITBusGrabTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BITBusGrabTests.swift; sourceTree = "<group>"; };
+		AC51679934910D48520419D9 /* BITBusGrabApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BITBusGrabApp.swift; sourceTree = "<group>"; };
+		B9DE6FEE7C85D2178865C661 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		BB0D2A5A159A6C17C375AEEC /* ReservationTaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationTaskManager.swift; sourceTree = "<group>"; };
+		CBB22E3C377D12B007321E13 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		D376A428F08D9855F084A0C1 /* SeatSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatSelectionView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		33759D49539F1AE0172139B5 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				4D605F785EE8E4AF8E165642 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		3B740DDD17647A111D1A0595 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CBB22E3C377D12B007321E13 /* RootView.swift */,
+				DD06A5D2E3E948ACF40AC925 /* Search */,
+				33759D49539F1AE0172139B5 /* Settings */,
+				A3A709BF52B678FC4D633A47 /* Tasks */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3DC6C9E1A6B71424485DBC93 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				A3CF81E6E3527198A264F9EF /* BITBusGrabTests.swift */,
+			);
+			name = Tests;
+			path = ios/Tests;
+			sourceTree = "<group>";
+		};
+		4DBD3D6ED01AF43F88017567 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8E80A24AC58865828247597A /* BITBusGrab.app */,
+				6974A601AC7425B11F13BC8B /* BITBusGrabTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A101E4374D4AA8ABBAD2AFE0 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				7CE72D632CD828C8EFC6B796 /* Assets.xcassets */,
+				AB53C6579DDAA76981118F23 /* App */,
+				C631007E18CEECE9C6EDF498 /* Models */,
+				E88019ED1083708BB3E23980 /* Services */,
+				3B740DDD17647A111D1A0595 /* Views */,
+			);
+			name = Sources;
+			path = ios/Sources;
+			sourceTree = "<group>";
+		};
+		A3A709BF52B678FC4D633A47 /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+				046C3BCFD8737326E5A02425 /* TasksView.swift */,
+			);
+			path = Tasks;
+			sourceTree = "<group>";
+		};
+		AB53C6579DDAA76981118F23 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				B9DE6FEE7C85D2178865C661 /* AppModel.swift */,
+				AC51679934910D48520419D9 /* BITBusGrabApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		C631007E18CEECE9C6EDF498 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1987D797ED45FA0E8030D5EF /* BusModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DD06A5D2E3E948ACF40AC925 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				10799FD1B112D6AD25FAE45D /* SearchView.swift */,
+				D376A428F08D9855F084A0C1 /* SeatSelectionView.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		E88019ED1083708BB3E23980 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				8C0287FC1A9B47016E9972EC /* AppPersistence.swift */,
+				999F2C9F0F78273F027614FB /* BITBusAPI.swift */,
+				306893615ACEEEA7AE923A07 /* LocalNotificationService.swift */,
+				BB0D2A5A159A6C17C375AEEC /* ReservationTaskManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		F746788A55D6A40CC3801DED = {
+			isa = PBXGroup;
+			children = (
+				A101E4374D4AA8ABBAD2AFE0 /* Sources */,
+				3DC6C9E1A6B71424485DBC93 /* Tests */,
+				4DBD3D6ED01AF43F88017567 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1B8F58A9D01E43070DEBA2D5 /* BITBusGrab */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7957B5A10DAA6E9D8F84288D /* Build configuration list for PBXNativeTarget "BITBusGrab" */;
+			buildPhases = (
+				645BFCD47957421B9659B074 /* Sources */,
+				ECB137EE7B5E4257F22F27E7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BITBusGrab;
+			packageProductDependencies = (
+			);
+			productName = BITBusGrab;
+			productReference = 8E80A24AC58865828247597A /* BITBusGrab.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F66CBD7F6EF67BC7B68E61A7 /* BITBusGrabTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CDAFCB1F8F756A16F2EDD4FB /* Build configuration list for PBXNativeTarget "BITBusGrabTests" */;
+			buildPhases = (
+				863DAFC56D7043C4C48CD197 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6F61042AD9F19DC9FE17E365 /* PBXTargetDependency */,
+			);
+			name = BITBusGrabTests;
+			packageProductDependencies = (
+			);
+			productName = BITBusGrabTests;
+			productReference = 6974A601AC7425B11F13BC8B /* BITBusGrabTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3F4BF6A59EB8A026A27F8EA7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					1B8F58A9D01E43070DEBA2D5 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					F66CBD7F6EF67BC7B68E61A7 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = AD7B43AE114F244419931553 /* Build configuration list for PBXProject "BITBusGrab" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = F746788A55D6A40CC3801DED;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 4DBD3D6ED01AF43F88017567 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1B8F58A9D01E43070DEBA2D5 /* BITBusGrab */,
+				F66CBD7F6EF67BC7B68E61A7 /* BITBusGrabTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ECB137EE7B5E4257F22F27E7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				869E0B39D7DF746EAC83912D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		645BFCD47957421B9659B074 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B85D23BCEFCAF73F60C49D04 /* AppModel.swift in Sources */,
+				BF5C7CDC5FE6606B575EC4EB /* AppPersistence.swift in Sources */,
+				A7970668F072784205E64874 /* BITBusAPI.swift in Sources */,
+				BD7C9D18FA487148A9B883F5 /* BITBusGrabApp.swift in Sources */,
+				9AE4B9D8E9AEBFDCDCCBBD00 /* BusModels.swift in Sources */,
+				7887378D84A2C24B4E83F615 /* LocalNotificationService.swift in Sources */,
+				B644C36DAC720FE3D81CAEB7 /* ReservationTaskManager.swift in Sources */,
+				0B46D92C3ABDCA8356F5E950 /* RootView.swift in Sources */,
+				B05D36CB6915A33A5D47446C /* SearchView.swift in Sources */,
+				E55C0D90A62AC93DB94A9B1F /* SeatSelectionView.swift in Sources */,
+				6E6BE9A35184A7294F81E6A7 /* SettingsView.swift in Sources */,
+				5AB79DC07F7AD396802E1A7B /* TasksView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		863DAFC56D7043C4C48CD197 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74056915D06C07EC78560B03 /* BITBusGrabTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6F61042AD9F19DC9FE17E365 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B8F58A9D01E43070DEBA2D5 /* BITBusGrab */;
+			targetProxy = E628AFA41268899C47DF7773 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		34B34B81818DA3D86CA8EC65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = BITBusGrab;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSAppTransportSecurity_NSAllowsArbitraryLoads = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.10;
+			};
+			name = Debug;
+		};
+		4D8C2CB01E9DE66AA7ECBAFE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lingruo.bitbusgrab.ios;
+				PRODUCT_NAME = BITBusGrab;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B11A566FD3F31505E19E4483 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lingruo.bitbusgrab.ios;
+				PRODUCT_NAME = BITBusGrab;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B3D8DBCF6D6960E05AEF1F70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lingruo.bitbusgrab.iosTests;
+				PRODUCT_NAME = BITBusGrabTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BITBusGrab.app/BITBusGrab";
+			};
+			name = Debug;
+		};
+		E25BF0AE854C631EB0D41756 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = BITBusGrab;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSAppTransportSecurity_NSAllowsArbitraryLoads = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.10;
+			};
+			name = Release;
+		};
+		F65C4156EF70D29E444D2280 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lingruo.bitbusgrab.iosTests;
+				PRODUCT_NAME = BITBusGrabTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BITBusGrab.app/BITBusGrab";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7957B5A10DAA6E9D8F84288D /* Build configuration list for PBXNativeTarget "BITBusGrab" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4D8C2CB01E9DE66AA7ECBAFE /* Debug */,
+				B11A566FD3F31505E19E4483 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		AD7B43AE114F244419931553 /* Build configuration list for PBXProject "BITBusGrab" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34B34B81818DA3D86CA8EC65 /* Debug */,
+				E25BF0AE854C631EB0D41756 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		CDAFCB1F8F756A16F2EDD4FB /* Build configuration list for PBXNativeTarget "BITBusGrabTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B3D8DBCF6D6960E05AEF1F70 /* Debug */,
+				F65C4156EF70D29E444D2280 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3F4BF6A59EB8A026A27F8EA7 /* Project object */;
+}

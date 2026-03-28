@@ -22,6 +22,12 @@ build/
 *.swp
 *.swo
 *~
+DerivedData/
+*.xcuserstate
+xcuserdata/
+*.xccheckout
+*.moved-aside
+*.xcodeproj/project.xcworkspace/xcuserdata/
 
 # ---> 日志文件
 *.log
